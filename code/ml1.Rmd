@@ -173,3 +173,23 @@ plot(cost3, xvar='lambda', label=TRUE)
 coefpath(cost3)
 ```
 
+```{r}
+cost4 <- cv.glmnet(x=x_glm, y=y_glm, family='gaussian', nfolds=10)
+```
+
+```{r}
+plot(cost4)
+```
+
+```{r}
+cost4$lambda.min
+cost4$lambda.1se
+```
+
+```{r}
+coefpath(cost4)
+coefplot(cost4, sort='magnitude', lambda='lambda.min')
+coefplot(cost4, sort='magnitude', lambda='lambda.1se')
+coefplot(cost4, sort='magnitude', lambda=456)
+```
+
