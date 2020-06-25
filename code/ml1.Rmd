@@ -193,3 +193,42 @@ coefplot(cost4, sort='magnitude', lambda='lambda.1se')
 coefplot(cost4, sort='magnitude', lambda=456)
 ```
 
+## Ridge
+
+$$
+\hat{\beta} = argmin \left [ \sum (y_i - X_i\beta)^2 + \lambda \sum |\beta_j|^2 \right ]
+$$
+```{r}
+cost5 <- cv.glmnet(x=x_glm, y=y_glm, family='gaussian', nfolds=10, alpha=0)
+```
+
+```{r}
+coefpath(cost5)
+plot(cost5$glmnet.fit, xvar='lambda')
+```
+
+## Elastic Net
+
+The elastic net is a combination of lasso and ridge
+
+$$
+\hat{\beta} = argmin \left [ \sum (y_i - X_i\beta)^2 + \lambda\left( \frac{1}{2}\alpha \sum |\beta_j| +  (1-\alpha)\sum |\beta_j|^2 \right) \right ]
+$$
+
+```{r}
+cost6 <- cv.glmnet(x=x_glm, y=y_glm, family='gaussian', nfolds=10, alpha=0.6)
+```
+
+```{r}
+coefpath(cost6)
+coefplot(cost6, sort='magnitude', lambda='lambda.min')
+```
+
+
+```{r}
+seq(0, 1, by=0.1)
+```
+
+Lasso was invented for when you have many more columns than rows
+
+Gauranteed to select no more columns than the number of rows
