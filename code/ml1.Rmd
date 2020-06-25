@@ -101,3 +101,32 @@ library(glmnet)
 Is it pronounced "glmnet" or "g-l-m-net"?
 
 glmnet is the winner
+
+```{r eval=FALSE}
+# this code is not run
+# it would not work anyway
+glmnet(y ~ x1 + x2, data=data)
+```
+
+Starting with glmnet 4.0 (possibly 3.0), you can use a formula
+
+So we need to build our own matrices
+
+Used to `useful::build.x()`
+
+Now I use `{recipes}`
+
+```{r}
+library(recipes)
+
+rec_glmnet1 <- recipe(charges ~ ., data=med) %>% 
+    step_knnimpute(all_predictors()) %>% 
+    # step_normalize(age, BMI) %>% 
+    step_normalize(all_numeric(), -charges) %>%
+    # step_center(all_numeric(), -charges) %>% 
+    # step_scale(all_numeric(), -charges) %>% 
+    step_dummy(all_nominal(), one_hot=TRUE)
+rec_glmnet1
+```
+
+
