@@ -1,0 +1,44 @@
+{
+    "reuse_sessions_for_project_links": true,
+    "panes": {
+        "quadrants": [
+            "Source",
+            "Console",
+            "TabSet1",
+            "TabSet2"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Connections",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Files",
+            "Plots",
+            "Packages",
+            "Help",
+            "Viewer"
+        ],
+        "console_left_on_top": false,
+        "console_right_on_top": true
+    },
+    "num_spaces_for_tab": 4,
+    "insert_matching": false,
+    "syntax_color_console": true,
+    "scroll_past_end_of_document": true,
+    "highlight_r_function_calls": true,
+    "insert_parens_after_function_completion": false,
+    "show_function_signature_tooltips": false,
+    "insert_spaces_around_equals": false,
+    "font_size_points": 12,
+    "editor_theme": "Vibrant Ink",
+    "show_doc_outline_rmd": true,
+    "rmd_chunk_output_inline": false,
+    "doc_outline_show": "all",
+    "rmd_viewer_type": "pane",
+    "posix_terminal_shell": "bash"
+}
