@@ -6,6 +6,7 @@ params:
     repoOwner: "landeranalytics"
     organizer: "[Lander Analytics](https://www.landeranalytics.com)"
     packages: !r c('glmnet', 'xgboost', 'rsample', 'recipes', 'coefplot', 'DiagrammeR', 'ranger', 'randomForest', 'partykit', 'tune', 'parsnip', 'piggyback')
+    rver: 4.0.0
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -129,13 +130,19 @@ knitr::include_graphics('images/ProjectCorner.png')
 
 Setting up all of the needed packages^[Linux users might need to install `libxml2-dev` and `zlib1g-dev`] and data will be handled by running the following line of code in the R console.
 
-```{r source-setup,eval=FALSE}
-source('prep/setup.r')
+If you are running R `r params$rver`, then to install the necessary packages run the following.
+
+```{r restore,eval=FALSE}
+renv::restore()
 ```
 
-If asked to compile from source, select `no`.
+If you have a different version of R, then running the following line will work.
 
-Otherwise, answer `y` to any questions asked in the terminal.
+```{r install-packages-text,echo=FALSE,comment=NA}
+glue::glue("install.packages(c(\"{paste(params$packages, collapse='\", \"')}\")")
+```
+
+If you are asked about compiling a package, say "no."
 
 # All Done
 
