@@ -138,3 +138,22 @@ prepped_glmnet1
 prepped_glmnet1 %>% juice()
 ```
 
+```{r}
+prepped_glmnet1 %>% juice() %>% dplyr::select(-charges) %>% as.matrix %>% head
+prepped_glmnet1 %>% juice(all_predictors(), composition='matrix') %>% head
+```
+
+Dense matrix: every number is represented in a 2D array
+Sparse matrix: does not store 0s, and the data is stored in a three-column array where the first two columns show the row and column number being represented, and the third column shows the value
+
+Sparse matrices take up less space in memory and are faster to do math
+
+```{r}
+x_glm <- prepped_glmnet1 %>% juice(all_predictors(), composition='dgCMatrix')
+```
+
+```{r}
+y_glm <- prepped_glmnet1 %>% juice(all_outcomes(), composition='matrix')
+head(y_glm)
+```
+
