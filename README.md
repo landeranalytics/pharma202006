@@ -117,7 +117,7 @@ renv::restore()
 If you have a different version of R, then running the following line
 will work.
 
-    install.packages(c("glmnet", "xgboost", "rsample", "recipes", "coefplot", "DiagrammeR", "ranger", "randomForest", "partykit", "tune", "parsnip", "piggyback")
+    install.packages(c("glmnet", "xgboost", "rsample", "recipes", "coefplot", "DiagrammeR", "ranger", "randomForest", "partykit", "tune", "parsnip", "piggyback"))
 
 If you are asked about compiling a package, say “no.”
 

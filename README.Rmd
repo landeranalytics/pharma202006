@@ -139,7 +139,7 @@ renv::restore()
 If you have a different version of R, then running the following line will work.
 
 ```{r install-packages-text,echo=FALSE,comment=NA}
-glue::glue("install.packages(c(\"{paste(params$packages, collapse='\", \"')}\")")
+glue::glue("install.packages(c(\"{paste(params$packages, collapse='\", \"')}\"))")
 ```
 
 If you are asked about compiling a package, say "no."
