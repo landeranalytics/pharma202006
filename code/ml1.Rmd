@@ -21,3 +21,32 @@ knitr::opts_chunk$set(echo = TRUE)
 piggyback::pb_download(file='data/med_costs.csv', repo='jaredlander/coursedata')
 ```
 
+```{r}
+here::here('data', 'med_costs.csv')
+med <- readr::read_csv(here::here('data', 'med_costs.csv'))
+```
+
+```{r}
+med
+```
+
+```{r}
+library(ggplot2)
+ggplot(med, aes(x=age, fill=sex)) + geom_histogram() + facet_wrap(~sex) + theme(legend.position='none')
+ggplot(med, aes(x=age, y=charges, color=sex)) + 
+    geom_point() + 
+    geom_smooth() + 
+    facet_wrap(~sex) + 
+    theme(legend.position='none')
+
+ggplot(med, aes(x=age, y=charges)) + 
+    geom_point(aes(color=region)) + 
+    geom_smooth() + 
+    facet_wrap(~sex)
+
+ggplot(med, aes(x=age, y=charges)) + 
+    geom_point(aes(color=smoker)) + 
+    geom_smooth() + 
+    facet_wrap(~sex)
+```
+
