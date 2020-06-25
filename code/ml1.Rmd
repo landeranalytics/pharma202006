@@ -157,3 +157,19 @@ y_glm <- prepped_glmnet1 %>% juice(all_outcomes(), composition='matrix')
 head(y_glm)
 ```
 
+```{r}
+cost3 <- glmnet(x=x_glm, y=y_glm, family='gaussian')
+```
+
+```{r}
+coef(cost3)
+# View(as.matrix(coef(cost3)))
+```
+
+
+```{r}
+plot(cost3, xvar='lambda')
+plot(cost3, xvar='lambda', label=TRUE)
+coefpath(cost3)
+```
+
