@@ -123,10 +123,18 @@ rec_glmnet1 <- recipe(charges ~ ., data=med) %>%
     step_knnimpute(all_predictors()) %>% 
     # step_normalize(age, BMI) %>% 
     step_normalize(all_numeric(), -charges) %>%
-    # step_center(all_numeric(), -charges) %>% 
-    # step_scale(all_numeric(), -charges) %>% 
+    # step_center(all_numeric(), -charges) %>%
+    # step_scale(all_numeric(), -charges, factor=2) %>%
     step_dummy(all_nominal(), one_hot=TRUE)
 rec_glmnet1
 ```
 
+```{r}
+prepped_glmnet1 <- rec_glmnet1 %>% prep()
+prepped_glmnet1
+```
+
+```{r}
+prepped_glmnet1 %>% juice()
+```
 
