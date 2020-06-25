@@ -130,8 +130,8 @@ this project.
 
 If you are still having trouble setting up the project and getting
 everything installed, sign up for an
-[RStudio.cloud](https://rstudio.cloud/) account, contact the TA and ask
-for access to the class project.\[5\]
+[RStudio.cloud](https://rstudio.cloud/spaces/76768/join?access_code=nSoEhO6etv%2BHkVl%2B1I%2FmK2YSOPTmFQhDgMIcEjPI)
+account.\[5\]
 
 # Footnotes
 
