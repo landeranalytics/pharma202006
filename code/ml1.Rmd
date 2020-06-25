@@ -231,4 +231,34 @@ seq(0, 1, by=0.1)
 
 Lasso was invented for when you have many more columns than rows
 
-Gauranteed to select no more columns than the number of rows
+Guaranteed to select no more columns than the number of rows
+
+## Predictions
+
+This is wrong, but we'll make a fake test set
+
+We should have done this in the beginning, but for now, we just want to show how to predict, so please forgive the transgression
+
+```{r}
+set.seed(7561)
+fake_test_data <- med %>% dplyr::slice_sample(n=10)
+fake_test_data
+```
+
+We can't just predict from a data.frame, we need a matrix
+
+```{r}
+x_test <- prepped_glmnet1 %>% bake(all_predictors(), composition='dgCMatrix', new_data=fake_test_data)
+x_test
+```
+
+```{r}
+preds_glm6 <- predict(cost6, newx=x_test, s='lambda.1se')
+preds_glm6
+```
+
+```{r}
+y_test <- prepped_glmnet1 %>% bake(all_outcomes(), composition='matrix', new_data=fake_test_data)
+sqrt(mean((y_test - preds_glm6)^2))
+```
+
