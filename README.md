@@ -104,6 +104,23 @@ right of RStudio (the name in the image may be different).
 
 # Finish Setup
 
+If you are running R 4.0.0, then to install the necessary packages run
+the following.
+
+``` r
+renv::restore()
+```
+
+If you have a different version of R, then running the following line
+will work.
+
+``` r
+glue::glue("install.packages(c(\"{paste(params$packages, collapse='\", \"')}\")")
+#> install.packages(c("glmnet", "xgboost", "rsample", "recipes", "coefplot", "DiagrammeR", "ranger", "randomForest", "partykit", "tune", "parsnip", "piggyback")
+```
+
+If you are asked about compiling a package, say “no.”
+
 Setting up all of the needed packages\[4\] and data will be handled by
 running the following line of code in the R console.
 
