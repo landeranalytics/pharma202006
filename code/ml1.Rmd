@@ -1,0 +1,23 @@
+---
+title: "ML in R"
+author: "Jared P. Lander"
+date: "6/25/2020"
+output: 
+    html_document:
+        toc: true
+        toc_float:
+            smooth_scroll: true
+            collapsed: false
+        number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data
+
+```{r}
+piggyback::pb_download(file='data/med_costs.csv', repo='jaredlander/coursedata')
+```
+
