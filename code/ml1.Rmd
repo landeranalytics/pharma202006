@@ -50,3 +50,54 @@ ggplot(med, aes(x=age, y=charges)) +
     facet_wrap(~sex)
 ```
 
+# Regression
+
+$$
+y \sim a + b_1x_1 + b_2x_2 + \cdots + b_px_p + \epsilon \\
+\epsilon \sim N(0, \sigma)
+$$
+
+- Output: response, outcome, dependent variable, y, label, target
+- Input: predictor, x, variable, covariate, feature, independent variable, data
+
+## lm
+
+```{r}
+cost1 <- lm(charges ~ age + sex + smoker, data=med)
+summary(cost1)
+```
+
+```{r}
+library(coefplot)
+coefplot(cost1, sort='magnitude')
+coefplot(cost1, sort='magnitude', lwdInner=1.5, lwdOuter=0.5)
+```
+
+```{r}
+cost2 <- lm(charges ~ scale(age) + sex + smoker, data=med)
+coefplot(cost2, sort='magnitude')
+```
+
+```{r}
+med
+```
+
+```{r}
+2^6 - 1
+2^10 - 1
+2^25 - 1
+2^120 - 1
+```
+
+## Lasso
+
+$$
+\hat{\beta} = argmin \left [ \sum (y_i - X_i\beta)^2 + \lambda \sum |\beta_j| \right ]
+$$
+```{r}
+library(glmnet)
+```
+
+Is it pronounced "glmnet" or "g-l-m-net"?
+
+glmnet is the winner
