@@ -128,6 +128,21 @@ knitr::include_graphics('images/ProjectCorner.png')
 
 # Finish Setup
 
+If you are running R `r params$rver`, then to install the necessary packages run the following.
+
+```{r restore,eval=FALSE}
+renv::restore()
+```
+
+If you have a different version of R, then running the following line will work.
+
+```{r install-packages-text}
+glue::glue("install.packages(c(\"{paste(params$packages, collapse='\", \"')}\")")
+```
+
+
+If you are asked about compiling a package, say "no."
+
 Setting up all of the needed packages^[Linux users might need to install `libxml2-dev` and `zlib1g-dev`] and data will be handled by running the following line of code in the R console.
 
 If you are running R `r params$rver`, then to install the necessary packages run the following.
