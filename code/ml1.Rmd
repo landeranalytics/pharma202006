@@ -617,6 +617,10 @@ cost24 <- xgb.train(
 )
 ```
 
+$$
+\hat{\beta} = argmin \left [ \sum (y_i - X_i\beta)^2 + \alpha \sum |\beta_j| + \lambda \sum |\beta_j|^2 \right ]
+$$
+
 ```{r}
 cost25 <- xgb.train(
     data=train_lin_xg,
