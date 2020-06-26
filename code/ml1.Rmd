@@ -266,3 +266,35 @@ y_test <- prepped_glmnet1 %>% bake(all_outcomes(), composition='matrix', new_dat
 sqrt(mean((y_test - preds_glm6)^2))
 ```
 
+# Trees
+
+Common Packages
+
+- `{rpart}`
+- `{C50}`
+- `{xgboost}`
+
+## Recipe
+
+```{r}
+library(rsample)
+train_test_split <- initial_split(data=med, prop=0.9, strata='charges')
+train_test_split
+test <- testing(train_test_split)
+test
+bulk <- training(train_test_split)
+bulk
+train_val_split <- initial_split(data=bulk, prop=0.9, strata='charges')
+train_val_split
+val <- testing(train_val_split)
+train <- training(train_val_split)
+val
+train
+```
+
+
+```{r}
+med
+rec_xgboost1 <- recipe(charges ~ ., data=med)
+```
+
