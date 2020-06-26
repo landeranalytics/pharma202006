@@ -327,7 +327,7 @@ val_xg <- xgb.DMatrix(data=val_x, label=val_y)
 colnames(train_x)
 ```
 
-# Fitting
+## Fitting
 
 ```{r}
 cost7 <- xgb.train(
@@ -562,3 +562,31 @@ cost22 <- xgb.train(
     colsample_bytree=0.5
 )
 ```
+
+## Boosted Linear Model
+
+```{r}
+rec_xgboost2 <- recipe(charges ~ ., data=train) %>% 
+    step_normalize(all_numeric(), -charges) %>% 
+    step_dummy(all_nominal(), one_hot=TRUE) %>% 
+    step_intercept()
+```
+
+```{r}
+prepped_xgboost2 <- rec_xgboost2 %>% prep()
+prepped_xgboost2
+```
+
+```{r}
+# train x/y
+# val x/y
+train_lin_x <- prepped_xgboost2 %>% juice(all_predictors(), composition='dgCMatrix')
+train_lin_y <- prepped_xgboost2 %>% juice(all_outcomes(), composition='matrix')
+
+val_lin_x <- prepped_xgboost2 %>% bake(all_predictors(), composition='dgCMatrix', new_data=val)
+val_lin_y <- prepped_xgboost2 %>% bake(all_outcomes(), composition='matrix', new_data=val)
+
+train_lin_xg <- xgb.DMatrix(data=train_lin_x, label=train_lin_y)
+val_lin_xg <- xgb.DMatrix(data=val_lin_x, label=val_lin_y)
+```
+
