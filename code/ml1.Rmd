@@ -316,3 +316,10 @@ test_x <- prepped_xgboost1 %>% bake(all_predictors(), composition='dgCMatrix', n
 test_y <- prepped_xgboost1 %>% bake(all_outcomes(), composition='dgCMatrix', new_data=test)
 ```
 
+```{r}
+library(xgboost)
+train_xg <- xgb.DMatrix(data=train_x, label=train_y)
+train_xg
+val_xg <- xgb.DMatrix(data=val_x, label=val_y)
+```
+
