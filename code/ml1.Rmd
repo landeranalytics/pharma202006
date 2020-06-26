@@ -417,3 +417,24 @@ cost12$evaluation_log %>%
     .[validate_rmse == min(validate_rmse), ]
 ```
 
+```{r}
+cost13 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg)
+)
+cost13$best_iteration
+cost13$best_ntreelimit
+cost13$best_score
+cost13$best_msg
+```
+
+```{r}
+cost13 %>% 
+    xgb.importance(model=., trees=0:cost13$best_ntreelimit) %>% 
+    xgb.plot.importance()
+```
+
