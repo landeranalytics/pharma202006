@@ -590,3 +590,69 @@ train_lin_xg <- xgb.DMatrix(data=train_lin_x, label=train_lin_y)
 val_lin_xg <- xgb.DMatrix(data=val_lin_x, label=val_lin_y)
 ```
 
+```{r}
+cost23 <- xgb.train(
+    data=train_lin_xg,
+    objective='reg:squarederror',
+    booster='gblinear',
+    nrounds=1,
+    watchlist=list(train=train_lin_xg, validate=val_lin_xg)
+)
+
+cost23 %>% 
+    xgb.importance(model=.) %>% 
+    xgb.plot.importance()
+
+coefplot(cost23, sort='magnitude')
+```
+
+```{r}
+cost24 <- xgb.train(
+    data=train_lin_xg,
+    objective='reg:squarederror',
+    booster='gblinear',
+    nrounds=100,
+    early_stopping_rounds=20,
+    watchlist=list(train=train_lin_xg, validate=val_lin_xg)
+)
+```
+
+```{r}
+cost25 <- xgb.train(
+    data=train_lin_xg,
+    objective='reg:squarederror',
+    booster='gblinear',
+    nrounds=100,
+    early_stopping_rounds=20,
+    watchlist=list(train=train_lin_xg, validate=val_lin_xg),
+    alpha=150
+)
+```
+
+```{r}
+cost26 <- xgb.train(
+    data=train_lin_xg,
+    objective='reg:squarederror',
+    booster='gblinear',
+    nrounds=100,
+    early_stopping_rounds=20,
+    watchlist=list(train=train_lin_xg, validate=val_lin_xg),
+    alpha=150,
+    lambda=1
+)
+```
+
+`xgb.cv()` can help with cross-validation for `{xgboost}`
+
+## Predictions
+
+```{r}
+preds_xg14 <- predict(cost14, newdata=test_x)
+preds_xg14 %>% head
+```
+
+```{r}
+preds_xg14.2 <- predict(cost14, newdata=test_x, ntreelimit=9)
+preds_xg14.2 %>% head
+```
+
