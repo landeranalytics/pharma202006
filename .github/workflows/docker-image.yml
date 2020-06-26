@@ -15,6 +15,7 @@ jobs:
     steps:
     - name: Build and push Docker images
       uses: docker/build-push-action@v1.1.0
+      working-directory: .
       with:
         # Username used to log in to a Docker registry. If not set then no login will occur
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -31,7 +32,7 @@ jobs:
         # Automatically tags the built image with the git short SHA as per the readme
         #tag_with_sha: # optional
         # Path to the build context
-        path: ../..
+        path: .
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
         dockerfile: Dockerfile
         # Sets the target stage to build
