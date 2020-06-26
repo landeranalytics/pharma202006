@@ -15,7 +15,7 @@ COPY ["${PROJ}.Rproj", "renv.lock", "./"]
 COPY renv ./renv
 RUN chown -R rstudio:rstudio .
 # -e "renv::load('/home/rstudio/${PROJ}')" \\
-RUN R -e "install.packages(c('renv', 'here'), repos='https://packagemanager.rstudio.com/all/__linux__/bionic/latest')" -e "renv::restore(project='/home/rstudio/${PROJ}', repos='https://packagemanager.rstudio.com/all/__linux__/bionic/latest', prompt=FALSE)"
+RUN R -e "install.packages(c('renv', 'here'), repos='https://packagemanager.rstudio.com/all/__linux__/bionic/latest')" -e "renv::restore(project='/home/rstudio/${PROJ}', repos='https://packagemanager.rstudio.com/all/__linux__/bionic/latest', prompt=FALSE, packages='glmnet')"
 # -e "renv::restore(prompt=FALSE)"
 
 # docker run --rm -p 8888:8787 -e PASSWORD=password --name ml4 jaredlander/pharma202006:4.0.0
