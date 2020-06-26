@@ -436,5 +436,129 @@ cost13$best_msg
 cost13 %>% 
     xgb.importance(model=., trees=0:cost13$best_ntreelimit) %>% 
     xgb.plot.importance()
+
+cost13 %>% 
+    xgb.importance(model=., trees=0:cost13$best_ntreelimit) %>% 
+    .[, sum(Gain)]
 ```
 
+```{r}
+cost14 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=2
+)
+```
+
+```{r}
+cost15 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=3
+)
+```
+
+```{r}
+cost16 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4
+)
+```
+
+```{r}
+cost17 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=12
+)
+```
+
+```{r}
+cost18 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4,
+    eta=0.1
+)
+```
+
+```{r}
+cost19 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=200,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4,
+    eta=0.05
+)
+```
+
+```{r}
+cost20 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=200,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4,
+    eta=0.3,
+    subsample=0.5,
+    colsample_bytree=0.5
+)
+```
+
+```{r}
+cost21 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=1,
+    num_parallel_tree=300,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4,
+    eta=0.3,
+    subsample=0.5,
+    colsample_bytree=0.5
+)
+```
+
+```{r}
+cost22 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    num_parallel_tree=50,
+    early_stopping_rounds=30,
+    watchlist=list(train=train_xg, validate=val_xg),
+    max_depth=4,
+    eta=0.3,
+    subsample=0.5,
+    colsample_bytree=0.5
+)
+```
