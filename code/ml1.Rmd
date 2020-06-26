@@ -323,3 +323,22 @@ train_xg
 val_xg <- xgb.DMatrix(data=val_x, label=val_y)
 ```
 
+```{r}
+colnames(train_x)
+```
+
+```{r}
+cost7 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=1
+)
+cost7
+summary(cost7)
+```
+
+```{r}
+xgb.plot.multi.trees(cost7)
+```
+
