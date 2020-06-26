@@ -327,6 +327,8 @@ val_xg <- xgb.DMatrix(data=val_x, label=val_y)
 colnames(train_x)
 ```
 
+# Fitting
+
 ```{r}
 cost7 <- xgb.train(
     data=train_xg,
@@ -340,5 +342,78 @@ summary(cost7)
 
 ```{r}
 xgb.plot.multi.trees(cost7)
+```
+
+```{r}
+cost8 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=1,
+    watchlist=list(train=train_xg)
+)
+```
+
+Decision Tree Drawbacks:
+
+- Unstable (high variance)
+- Overfitting
+- Discontinuous functions (could be positive because it allows nonlinearity)
+- Hard to interpret (for bigger trees)
+
+Solutions:
+
+- Random Forests (bagging: bootstrap averaging)
+- Boosting
+
+```{r}
+cost9 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    watchlist=list(train=train_xg)
+)
+```
+
+```{r}
+xgb.plot.multi.trees(cost9)
+```
+
+```{r}
+cost10 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=500,
+    watchlist=list(train=train_xg)
+)
+```
+
+```{r}
+cost11 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=2500,
+    watchlist=list(train=train_xg)
+)
+```
+
+```{r}
+cost12 <- xgb.train(
+    data=train_xg,
+    objective='reg:squarederror',
+    booster='gbtree',
+    nrounds=100,
+    watchlist=list(train=train_xg, validate=val_xg)
+)
+```
+
+```{r}
+library(dygraphs)
+dygraph(cost12$evaluation_log)
+cost12$evaluation_log %>% 
+    .[validate_rmse == min(validate_rmse), ]
 ```
 
