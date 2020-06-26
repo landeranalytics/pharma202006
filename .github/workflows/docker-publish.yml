@@ -57,6 +57,10 @@ jobs:
       - name: Push image
         run: |
           echo 'Pushing $IMAGE_NAME'
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          echo $IMAGE_NAME
+          
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
           
           # Change all uppercase to lowercase
