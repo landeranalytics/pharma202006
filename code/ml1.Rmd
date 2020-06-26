@@ -295,6 +295,24 @@ train
 
 ```{r}
 med
-rec_xgboost1 <- recipe(charges ~ ., data=med)
+rec_xgboost1 <- recipe(charges ~ ., data=train) %>% 
+    step_dummy(all_nominal(), one_hot=TRUE)
+rec_xgboost1
+```
+
+```{r}
+prepped_xgboost1 <- rec_xgboost1 %>% prep()
+prepped_xgboost1
+```
+
+```{r}
+train_x <- prepped_xgboost1 %>% juice(all_predictors(), composition='dgCMatrix')
+train_y <- prepped_xgboost1 %>% juice(all_outcomes(), composition='dgCMatrix')
+
+val_x <- prepped_xgboost1 %>% bake(all_predictors(), composition='dgCMatrix', new_data=val)
+val_y <- prepped_xgboost1 %>% bake(all_outcomes(), composition='dgCMatrix', new_data=val)
+
+test_x <- prepped_xgboost1 %>% bake(all_predictors(), composition='dgCMatrix', new_data=test)
+test_y <- prepped_xgboost1 %>% bake(all_outcomes(), composition='dgCMatrix', new_data=test)
 ```
 
