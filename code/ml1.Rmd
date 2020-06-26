@@ -150,7 +150,11 @@ Sparse matrices take up less space in memory and are faster to do math
 
 ```{r}
 x_glm <- prepped_glmnet1 %>% juice(all_predictors(), composition='dgCMatrix')
+x_glm
+image(x_glm[1:20, 1:11])
 ```
+
+dgC standards for double (numeric) compressed sparse column
 
 ```{r}
 y_glm <- prepped_glmnet1 %>% juice(all_outcomes(), composition='matrix')

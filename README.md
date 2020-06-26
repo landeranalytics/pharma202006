@@ -39,6 +39,7 @@ Choose **one of these methods**.
 2.  Clone the repo using the RStudio GUI
 3.  Use the [`{usethis}`](https://usethis.r-lib.org) package to download
     and unzip the repo
+4.  Pull a Docker image
 
 Please only follow one of these methods. Attempting more than one can
 lead to errors.
@@ -95,6 +96,17 @@ newProject <- usethis::use_course('https://github.com/landeranalytics/pharma2020
 Be sure to select the positive prompts such as `yes`, `yeah`, etc.
 
 This will open the project in a new RStudio window.
+
+## Docker Image
+
+In the terminal run the following command
+
+``` sh
+docker run --rm -p 8787:8787 -e PASSWORD=password --name ml4 jaredlander/pharma202006:4.0.0
+```
+
+Then open a browser and visit `localhost:8787`, login with username
+`rstudio` and password `password`.
 
 After any of these methods you should have a new RStudio project called
 `pharma202006` or `pharma202006-master`. You can see this in the top
